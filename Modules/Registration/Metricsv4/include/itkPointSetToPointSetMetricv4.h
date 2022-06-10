@@ -198,6 +198,15 @@ public:
                                          LocalDerivativeType &,
                                          const PixelType & pixel) const = 0;
 
+  void
+  GetLocalNeighborhoodValueAndDerivativeWithIndex(const PointIdentifier &,
+                                                  const PointType &     point,
+                                                  MeasureType &         measure,
+                                                  LocalDerivativeType & derivative,
+                                                  const PixelType &     pixel) const override
+  {
+    this->GetLocalNeighborhoodValueAndDerivative(point, measure, derivative, pixel);
+  };
 
 protected:
   PointSetToPointSetMetricv4() = default;
@@ -218,16 +227,6 @@ private:
                                           const PixelType & pixel) const override
   {
     return this->GetLocalNeighborhoodDerivative(point, pixel);
-  };
-
-  void
-  GetLocalNeighborhoodValueAndDerivativeWithIndex(const PointIdentifier &,
-                                                  const PointType &     point,
-                                                  MeasureType &         measure,
-                                                  LocalDerivativeType & derivative,
-                                                  const PixelType &     pixel) const override
-  {
-    this->GetLocalNeighborhoodValueAndDerivative(point, measure, derivative, pixel);
   };
 };
 } // end namespace itk

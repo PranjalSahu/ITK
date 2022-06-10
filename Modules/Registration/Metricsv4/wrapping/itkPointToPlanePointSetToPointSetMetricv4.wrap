@@ -1,0 +1,12 @@
+itk_wrap_include("itkVector.h")
+itk_wrap_include("itkPointSet.h")
+itk_wrap_include("itkDefaultStaticMeshTraits.h")
+itk_wrap_filter_dims(has_d_3 3)
+
+UNIQUE(types "${WRAP_ITK_SCALAR};D")
+
+itk_wrap_class("itk::PointToPlanePointSetToPointSetMetricv4" POINTER_WITH_2_SUPERCLASSES)
+  foreach(d ${ITK_WRAP_IMAGE_DIMS})
+      itk_wrap_template("PS${ITKM_F}${d}" "itk::PointSet< itk::Vector< float, ${d} >, ${d} >")
+  endforeach()
+itk_end_wrap_class()
